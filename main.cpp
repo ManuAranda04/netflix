@@ -62,11 +62,24 @@ void buscarPorTitulo(Pelicula peliculas[], int cantidad, const char* consulta) {
 }
 
 void ordenarPorReproducciones(Pelicula peliculas[], int cantidad) {
-//TODO implementar ordenamiento
+    for (int i = 1; i < cantidad; i++)
+    {
+        int key = peliculas[i].reproducciones;
+        int j = i - 1;
+
+        while (j >= 0 && peliculas[j].reproducciones > key)
+        {
+            peliculas[j + 1].reproducciones = peliculas[j].reproducciones;
+            j = j - 1;
+        }
+        peliculas[j + 1].reproducciones = key;
+    }
 }
 
 void ordenarPorTitulo(Pelicula peliculas[], int cantidad) {
     //TODO implementar ordenamiento
+    //Le sigo dando vueltas a esto
+    //No se me ocurre como hacerlo :C
 }
 
 void mostrarPeliculas(Pelicula peliculas[], int cantidad) {
@@ -79,7 +92,7 @@ void mostrarPeliculas(Pelicula peliculas[], int cantidad) {
 
 int main() {
     Pelicula peliculas[MAX_PELICULAS];
-    int cantidad = cargarPeliculas("reproducciones_netflix.csv", peliculas);
+    int cantidad = cargarPeliculas("../reproducciones_netflix.csv", peliculas);
 
     if (cantidad == 0) {
         std::cerr << "No se pudieron cargar las películas.\n";
