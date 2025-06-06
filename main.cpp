@@ -77,9 +77,18 @@ void ordenarPorReproducciones(Pelicula peliculas[], int cantidad) {
 }
 
 void ordenarPorTitulo(Pelicula peliculas[], int cantidad) {
-    //TODO implementar ordenamiento
-    //Le sigo dando vueltas a esto
-    //No se me ocurre como hacerlo :C
+    for (int i = 1; i < cantidad; i++)
+    {
+        Pelicula key = peliculas[i];
+        int j = i - 1;
+
+        while (j >= 0 && strcmp(peliculas[j].titulo, key.titulo) > 0)
+        {
+            peliculas[j + 1] = peliculas[j];
+            j--;
+        }
+        peliculas[j + 1] = key;
+    }
 }
 
 void mostrarPeliculas(Pelicula peliculas[], int cantidad) {
